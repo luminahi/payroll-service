@@ -18,7 +18,7 @@ public class EmployeeModelAssembler implements RepresentationModelAssembler<Empl
                 linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
         } catch (EmployeeNotFoundException e) {
             return EntityModel.of(employee,
-                    linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
+                linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
         }
     }
 }

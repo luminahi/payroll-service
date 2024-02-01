@@ -12,13 +12,15 @@ public class Employee {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
     private String role;
+    private String firstName;
+    private String lastName;
     
     public Employee() {}
 
-    public Employee(String name, String role) {
-        this.name = name;
+    public Employee(String firstName, String lastName, String role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.role = role;
     }
 
@@ -30,12 +32,31 @@ public class Employee {
         this.id = id;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+    
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    
+    public String getLastName() {
+        return lastName;
+    }
+    
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
     public String getName() {
-        return name;
+        return firstName  + " " + lastName;
     }
 
+    
     public void setName(String name) {
-        this.name = name;
+        String[] words = name.split(" ");
+        this.firstName = words[0];
+        this.lastName = words[1];
     }
 
     public String getRole() {
@@ -48,7 +69,7 @@ public class Employee {
     
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, role);
+        return Objects.hash(id, firstName, lastName, role);
     }
     
     @Override
@@ -59,12 +80,14 @@ public class Employee {
         Employee employee = (Employee) obj;
         
         return Objects.equals(this.id, employee.id) &&
-                Objects.equals(this.name, employee.name) &&
+                Objects.equals(this.firstName, employee.firstName) &&
+                Objects.equals(this.lastName, employee.lastName) &&
                 Objects.equals(this.role, employee.role);
     }
     
     @Override
     public String toString() {
-      return "Employee{" + "id=" + this.id + ", name='" + this.name + '\'' + ", role='" + this.role + '\'' + '}';    
+        return "Employee{" + "id=" + this.id + ", firstName='" + this.firstName + '\'' +
+                ", lastName='" + this.lastName + '\'' + ", role='" + this.role + '\'' + '}';    
     }
 }
